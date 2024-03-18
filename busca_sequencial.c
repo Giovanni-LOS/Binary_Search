@@ -1,18 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define LIM1 100000
-#define LIM2 10000000
+#define LIM1 10000000
+#define LIM2 100000000
 
 void initArray( int array[], int len );
 void seqSearch( int array[], int len, int num );
-
-int array[LIM1];
 
 int main() {
 
 	int n = LIM1, q = LIM2;
 	int num;
+	int *array = (int*) malloc(sizeof(int)*n);
 	clock_t start, end;
 	double cpu_time_used;
 
@@ -32,7 +31,7 @@ int main() {
 
 	cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
 
-	printf("Exec. Time: %f seconds\n", cpu_time_used);
+	printf("%f\n", cpu_time_used);
 }
 
 void initArray( int array[], int len ) {

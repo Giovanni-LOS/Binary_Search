@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 #define LIM1 10000000
-#define LIM2 10000000
+#define LIM2 100000000
 
 void initArray( int array[], int len );
 void merge( int *array, int *array1, int *array2, int num );
 void mergeSort( int *array, int num );
 void binary_search( int array[], int sPtr, int ePtr, int num );
+void busca_binaria(int* v,int n,int chave);
 
 int main() {
 
@@ -28,13 +30,14 @@ int main() {
 	for(int i = 0; i<q; i++) {
 
 		num = rand() % LIM1;
+		//busca_binaria(array, n, num);
 		binary_search(array, 0, n - 1, num);
 	}
 
 	end = clock();
 	cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
 
-	printf("Exec. Time: %f seconds\n", cpu_time_used);
+	printf("%f\n", cpu_time_used);
 }
 
 void initArray( int array[], int len ) {
@@ -48,19 +51,58 @@ void initArray( int array[], int len ) {
 void binary_search( int array[],int sPtr, int ePtr, int num ) {
 	
 	if( sPtr > ePtr ) {
-		//puts("Not Found.");
+		// puts("Not Found.");
 		return;
 	}
 
 	int mPtr = sPtr + ((ePtr - sPtr) / 2);
 	if( array[mPtr] == num ) {
-		//printf("%d is at %d.\n", num, mPtr);
+		// printf("%d is at %d.\n", num, mPtr);
 		return;
 	} else if( array[mPtr] < num ) {
 		binary_search( array, mPtr + 1, ePtr, num );
 	} else {
 		binary_search( array, sPtr, mPtr - 1 , num );
 	}
+	
+	/*int mPtr = (ePtr+1) / 2;
+	while ( sPtr <= ePtr ) {
+
+		if( array[mPtr] == num ) {
+			// printf("%d is at %d.\n", num, mPtr);
+			return;
+		} else if( array[mPtr] < num ) {
+
+			sPtr = mPtr + 1;
+			mPtr = sPtr + ((ePtr - sPtr) / 2);
+		} else {
+			
+			ePtr = mPtr - 1;
+			mPtr = sPtr + ((ePtr - sPtr) / 2);
+		}
+	}
+
+	
+	// puts("Not Found.");*/
+}
+
+void busca_binaria(int* v,int n,int chave){
+    int l,r,m;
+    l = 0;
+    r = n-1;
+    while(l<=r){
+        m = (l+r)/2;
+        if(chave<v[m]){
+            r = m-1;
+        }
+        else if(chave>v[m]){
+            l = m+1;
+        }
+        else{
+            return;
+        }
+    }
+    return;
 }
 
 void merge( int *array, int *array1, int *array2, int num ) {
