@@ -4,7 +4,7 @@ int main(int argc, char *argv[]) {
 
 	FILE *fPtr;
 	fPtr = fopen(argv[1], "r");
-	float numbers[16];
+	float numbers[5];
 
 	int i = 0;
 	while(!feof(fPtr)) {
@@ -13,11 +13,11 @@ int main(int argc, char *argv[]) {
 	fclose(fPtr);
 	
 	float soma = 0;
-	for(i = 0; i<16; i++) {
+	for(i = 0; i<5; i++) {
 		soma += numbers[i];
 	}
 
-	float r = soma / 16;
+	float r = soma / 5;
 	printf("%f\n", r);
 
 	return 0;

@@ -3,12 +3,12 @@
 #include <time.h>
 
 #define LIM1 10000000
-#define LIM2 100000000
+#define LIM2 1000
 
 void initArray( int array[], int len );
 void merge( int *array, int *array1, int *array2, int num );
 void mergeSort( int *array, int num );
-void binary_search( int array[], int sPtr, int ePtr, int num );
+int binary_search( int array[], int sPtr, int ePtr, int num );
 void busca_binaria(int* v,int n,int chave);
 
 int main() {
@@ -16,9 +16,10 @@ int main() {
 	int n = LIM1, q = LIM2;
 	int num;
 	int *array = (int*) malloc(sizeof(int)*n);
+	int *array2 = (int*) malloc(sizeof(int)*q);
 	clock_t start, end;
 	double cpu_time_used;
-	
+
 	srand(time(NULL));
 
 	initArray(array, n);
@@ -31,13 +32,16 @@ int main() {
 
 		num = rand() % LIM1;
 		//busca_binaria(array, n, num);
-		binary_search(array, 0, n - 1, num);
+		array2[i] = binary_search(array, 0, n - 1, num);
 	}
 
 	end = clock();
 	cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
 
 	printf("%f\n", cpu_time_used);
+
+	free(array);
+	free(array2);
 }
 
 void initArray( int array[], int len ) {
@@ -48,21 +52,21 @@ void initArray( int array[], int len ) {
 	}
 }
 
-void binary_search( int array[],int sPtr, int ePtr, int num ) {
+int binary_search( int array[],int sPtr, int ePtr, int num ) {
 	
 	if( sPtr > ePtr ) {
 		// puts("Not Found.");
-		return;
+		return -1;
 	}
 
 	int mPtr = sPtr + ((ePtr - sPtr) / 2);
 	if( array[mPtr] == num ) {
 		// printf("%d is at %d.\n", num, mPtr);
-		return;
+		return 1;
 	} else if( array[mPtr] < num ) {
-		binary_search( array, mPtr + 1, ePtr, num );
+		return binary_search( array, mPtr + 1, ePtr, num );
 	} else {
-		binary_search( array, sPtr, mPtr - 1 , num );
+		return binary_search( array, sPtr, mPtr - 1 , num );
 	}
 	
 	/*int mPtr = (ePtr+1) / 2;
