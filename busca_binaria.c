@@ -3,7 +3,7 @@
 #include <time.h>
 
 #define LIM1 10000000
-#define LIM2 1000
+#define LIM2 1000000
 
 void initArray( int array[], int len );
 void merge( int *array, int *array1, int *array2, int num );
@@ -69,25 +69,6 @@ int binary_search( int array[],int sPtr, int ePtr, int num ) {
 		return binary_search( array, sPtr, mPtr - 1 , num );
 	}
 	
-	/*int mPtr = (ePtr+1) / 2;
-	while ( sPtr <= ePtr ) {
-
-		if( array[mPtr] == num ) {
-			// printf("%d is at %d.\n", num, mPtr);
-			return;
-		} else if( array[mPtr] < num ) {
-
-			sPtr = mPtr + 1;
-			mPtr = sPtr + ((ePtr - sPtr) / 2);
-		} else {
-			
-			ePtr = mPtr - 1;
-			mPtr = sPtr + ((ePtr - sPtr) / 2);
-		}
-	}
-
-	
-	// puts("Not Found.");*/
 }
 
 void busca_binaria(int* v,int n,int chave){

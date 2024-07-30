@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define LIM1 100000
-#define LIM2 1000
+#define LIM1 10000000
+#define LIM2 1000000
 
 void initArray( int array[], int len );
 int seqSearch( int array[], int len, int num );
@@ -52,10 +52,8 @@ int seqSearch( int array[], int len, int num ) {
 
 		if(array[i] == num) {
 
-			//printf("%d is at %d\n", num, i);
 			return 1;
 		}
 	}
-	//puts("Not found.");
 	return -1;
 }
