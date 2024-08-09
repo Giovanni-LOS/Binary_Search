@@ -5,7 +5,7 @@
 #define LIM2 1000
 
 void initArray( int array[], int len );
-int seqSearch( int array[], int len, int num );
+int seqSearchOpt( int array[], int len, int num );
 void merge(int *array, int *array1, int *array2, int num);
 void mergeSort( int *array, int num );
 
@@ -29,7 +29,7 @@ int main() {
 	for(int i = 0; i<q; i++) {
 
 		num = rand() % LIM1;
-		array2[i] = seqSearch(array, n, num);
+		array2[i] = seqSearchOpt(array, n, num);
 	}
 
 	end = clock();
@@ -49,7 +49,7 @@ void initArray( int array[], int len ) {
 	}
 }
 
-int seqSearch( int array[], int len, int num ) {
+int seqSearchOpt( int array[], int len, int num ) {
 	
 	for(int i = 0; i<len; i++) {
 		
@@ -59,11 +59,9 @@ int seqSearch( int array[], int len, int num ) {
 
 		if( array[i] == num ) {
 
-			//printf("%d is at %d\n", num, i);
 			return 1;
 		}
 	}
-	//puts("Not found.");
 	return -1;
 }
 

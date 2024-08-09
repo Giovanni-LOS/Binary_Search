@@ -31,7 +31,6 @@ int main() {
 	for(int i = 0; i<q; i++) {
 
 		num = rand() % LIM1;
-		//busca_binaria(array, n, num);
 		array2[i] = binary_search(array, 0, n - 1, num);
 	}
 
@@ -55,13 +54,11 @@ void initArray( int array[], int len ) {
 int binary_search( int array[],int sPtr, int ePtr, int num ) {
 	
 	if( sPtr > ePtr ) {
-		// puts("Not Found.");
 		return -1;
 	}
 
 	int mPtr = sPtr + ((ePtr - sPtr) / 2);
 	if( array[mPtr] == num ) {
-		// printf("%d is at %d.\n", num, mPtr);
 		return 1;
 	} else if( array[mPtr] < num ) {
 		return binary_search( array, mPtr + 1, ePtr, num );
@@ -69,25 +66,6 @@ int binary_search( int array[],int sPtr, int ePtr, int num ) {
 		return binary_search( array, sPtr, mPtr - 1 , num );
 	}
 	
-}
-
-void busca_binaria(int* v,int n,int chave){
-    int l,r,m;
-    l = 0;
-    r = n-1;
-    while(l<=r){
-        m = (l+r)/2;
-        if(chave<v[m]){
-            r = m-1;
-        }
-        else if(chave>v[m]){
-            l = m+1;
-        }
-        else{
-            return;
-        }
-    }
-    return;
 }
 
 void merge( int *array, int *array1, int *array2, int num ) {
